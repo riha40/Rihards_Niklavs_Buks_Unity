@@ -346,11 +346,11 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Asset Packs/Cartoon Heroes/Scripts/SetCharacter/SetCharacter.cs"
-"Assets/Scripts/Combat/Attacker.cs"
-"Assets/Scripts/Combat/CombatTarget.cs"
-"Assets/Scripts/Control/PlayerMovement.cs"
-"Assets/Scripts/Core/FollowCamera.cs"
-"Assets/Scripts/Movement/Move.cs"
+"Assets/Scripts/Bomb.cs"
+"Assets/Scripts/FollowCamera.cs"
+"Assets/Scripts/GameManager.cs"
+"Assets/Scripts/Move.cs"
+"Assets/Scripts/Player.cs"
 -langversion:9.0
 
 /deterministic

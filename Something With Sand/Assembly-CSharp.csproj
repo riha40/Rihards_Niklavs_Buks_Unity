@@ -36,12 +36,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Movement\Move.cs" />
-     <Compile Include="Assets\Scripts\Combat\CombatTarget.cs" />
-     <Compile Include="Assets\Scripts\Combat\Attacker.cs" />
-     <Compile Include="Assets\Scripts\Core\FollowCamera.cs" />
+     <Compile Include="Assets\Scripts\Move.cs" />
+     <Compile Include="Assets\Scripts\FollowCamera.cs" />
      <Compile Include="Assets\Asset Packs\Cartoon Heroes\Scripts\SetCharacter\SetCharacter.cs" />
-     <Compile Include="Assets\Scripts\Control\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Bomb.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <None Include="Assets\Asset Packs\Synty - Polygon Student Sample\README - Usage Rights for these assets.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.20f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
