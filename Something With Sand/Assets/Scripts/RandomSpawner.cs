@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
@@ -12,13 +11,11 @@ public class RandomSpawner : MonoBehaviour
 
     private bool canSpawn = true;
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnObjects());
     }
 
-    // Coroutine function for spawning objects at a defined interval
     private IEnumerator SpawnObjects()
     {
         while (true)

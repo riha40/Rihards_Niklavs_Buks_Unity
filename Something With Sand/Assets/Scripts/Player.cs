@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -8,6 +6,8 @@ public class Player : MonoBehaviour
     public System.Action<int> OnHealthUpdated;
     public const int MaxHealth = 100;
     int _health;
+    CountdownTimer CountdownTimer;
+
     public int Health
     {
         get => _health;
@@ -17,9 +17,11 @@ public class Player : MonoBehaviour
             OnHealthUpdated?.Invoke(_health);
         }
     }
+
     void Start()
     {
-        Health = MaxHealth;
+        CountdownTimer = GetComponent<CountdownTimer>();
+        Health = MaxHealth;    
     }
 
     void Update()
@@ -52,15 +54,5 @@ public class Player : MonoBehaviour
     {
         Debug.Log(nameof(DoExplosionEffect));
         Health -= 25;
-        if (Health <= 0)
-        {
-            HandleGameEnded();
-            GameManager.instance.GameLost();
-        }
-    }
-
-    void HandleGameEnded()
-    {
-        GetComponent<Animator>().SetTrigger("Death");
     }
 }

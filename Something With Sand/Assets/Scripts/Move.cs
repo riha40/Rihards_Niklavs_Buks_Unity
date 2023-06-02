@@ -6,16 +6,19 @@ public class Move : MonoBehaviour
 
     NavMeshAgent navMeshAgent;
     Player Player;
+    CountdownTimer countdownTimer;
 
     private void Start() {
         navMeshAgent = GetComponent<NavMeshAgent>();
         Player = GetComponent<Player>();
+        countdownTimer = FindObjectOfType<CountdownTimer>();
     }
     
     void Update()
     {
+        float currentTime = countdownTimer.currentTime;
         UpdateAnimator();
-        if(Player.Health <= 0)
+        if(Player.Health <= 0 || currentTime <=0)
         {
             Stop();
         }

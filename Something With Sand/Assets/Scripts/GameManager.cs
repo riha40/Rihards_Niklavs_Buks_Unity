@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,16 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public event System.Action OnGameLost;
+    private int finalScore;
 
 
     void Awake()
     {
         if (instance == null) instance = this;
-    }
-
-    IEnumerator Start()
-    {
-        yield return new WaitForEndOfFrame();
     }
 
     Player _player;
@@ -33,11 +27,21 @@ public class GameManager : MonoBehaviour
     public void GameLost()
     {
         OnGameLost?.Invoke();
-        Invoke(nameof(RestartGame), 2f);
+        Invoke(nameof(RestartGame), 5f);
     }
 
     void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SetFinalScore(int score)
+    {
+        finalScore = score;
+    }
+
+    public int GetFinalScore()
+    {
+        return finalScore;
     }
 }
