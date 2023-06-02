@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-
-    [SerializeField] GameObject ExplsionFX;
+    [SerializeField] GameObject ExplosionFX;
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,12 +12,11 @@ public class Bomb : MonoBehaviour
 
             if (player != null)
             {
-                Instantiate(ExplsionFX, transform.position, Quaternion.identity);
+                Instantiate(ExplosionFX, transform.position, Quaternion.identity);
                 player.DoExplosionEffect();
             }
 
             Destroy(gameObject);
         }
-
     }
 }

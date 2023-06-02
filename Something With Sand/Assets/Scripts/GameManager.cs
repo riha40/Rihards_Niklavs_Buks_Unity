@@ -6,6 +6,19 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public event System.Action OnGameLost;
+
+
+    void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
+    IEnumerator Start()
+    {
+        yield return new WaitForEndOfFrame();
+    }
+
     Player _player;
     public Player Player
     {
@@ -15,5 +28,16 @@ public class GameManager : MonoBehaviour
             return _player;
         }
 
+    }
+
+    public void GameLost()
+    {
+        OnGameLost?.Invoke();
+        Invoke(nameof(RestartGame), 2f);
+    }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

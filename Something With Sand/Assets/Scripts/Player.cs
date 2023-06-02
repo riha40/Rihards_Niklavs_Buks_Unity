@@ -2,8 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
+    public System.Action<int> OnHealthUpdated;
+    public const int MaxHealth = 100;
+    int _health;
+    public int Health
+    {
+        get => _health;
+        private set
+        {
+            _health = value;
+            OnHealthUpdated?.Invoke(_health);
+        }
+    }
+    void Start()
+    {
+        Health = MaxHealth;
+    }
+
     void Update()
     {
         if (MoveToPoint()) return;
@@ -33,17 +51,16 @@ public class Player : MonoBehaviour
     public void DoExplosionEffect()
     {
         Debug.Log(nameof(DoExplosionEffect));
+        Health -= 25;
+        if (Health <= 0)
+        {
+            HandleGameEnded();
+            GameManager.instance.GameLost();
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void HandleGameEnded()
     {
-        // Check if the collision is happening with the specific object you want to detect
-        if (collision.gameObject.CompareTag("Bomb"))
-        {
-            // The player has met the object
-            Debug.Log("Player has met the object!");
-
-            // You can perform any other actions or logic here as needed
-        }
+        GetComponent<Animator>().SetTrigger("Death");
     }
 }
