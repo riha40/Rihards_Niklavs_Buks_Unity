@@ -6,19 +6,23 @@ public class CountdownTimer : MonoBehaviour
 {
     [SerializeField] public float totalTime;
     [SerializeField] public float currentTime;
-    [SerializeField] public int score = 0;
 
+    public int score = 0;
+    public int highscore = 0;
     private bool isCountingDown = true;
     public TMP_Text countdownText; 
     public TMP_Text scoreText;
+    public TMP_Text highscoreText;
 
     Player Player;
 
     private void Start()
     {
+        highscore = PlayerPrefs.GetInt("highscore", 0);
         currentTime = totalTime;
         UpdateScore();
         Player = GetComponent<Player>();
+        highscoreText.text = "HIGHSCORE: " + highscore.ToString();
     }
 
     private void Update()
@@ -47,7 +51,6 @@ public class CountdownTimer : MonoBehaviour
     {
         GetComponent<Animator>().SetTrigger("Death");
         GameManager.instance.SetFinalScore(score);
-        
     }
 
     public void AddTime(float additionalTime)
@@ -60,10 +63,14 @@ public class CountdownTimer : MonoBehaviour
         int minutes = Mathf.FloorToInt(time / 60f);
         int seconds = Mathf.FloorToInt(time % 60f);
 
-        return string.Format("Time Left: {0:00}:{1:00}", minutes, seconds);
+        return string.Format("TIME LEFT: {0:00}:{1:00}", minutes, seconds);
     }
     private void UpdateScore()
     {
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "SCORE: " + score.ToString();
+        if (highscore < score)
+        {
+            PlayerPrefs.SetInt("highscore",score);
+        }
     }
 }

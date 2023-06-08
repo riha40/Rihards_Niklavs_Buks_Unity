@@ -7,10 +7,16 @@ public class GameManager : MonoBehaviour
     public event System.Action OnGameLost;
     private int finalScore;
 
-
     void Awake()
     {
         if (instance == null) instance = this;
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadMenu();
+        }
     }
 
     Player _player;
@@ -43,5 +49,15 @@ public class GameManager : MonoBehaviour
     public int GetFinalScore()
     {
         return finalScore;
+    }
+
+    bool isLoadingMenu = false;
+
+    void LoadMenu()
+    {
+        if (isLoadingMenu) return;
+
+        isLoadingMenu = true;
+        SceneManager.LoadScene(0);
     }
 }
